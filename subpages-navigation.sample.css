@@ -1,0 +1,109 @@
+/*
+    IMPORTANT: This is only a sample stylesheet and is NOT loaded automatically
+    by the subpages navigation plugin. You would have to copy the relevant style
+    (along with the images) into your theme's stylesheet.
+    
+    How to style your subpages navigations:
+    
+    * The tree root
+    	* The root is always a <ul> with the class "subpages-navi"
+    	* The root of the widget will also have the class "subpages-navi-widget"
+    	* The root will also have the class "subpages-navi-collapsible" if "collapsible" is turned on (default)
+    	* The root will also have the class "subpages-navi-exclusive" if "exclusive" is turned on
+	* The tree nodes
+	    * Every node is a <li> with the class "subpages-navi-node"
+	    * Every node will also have the class "subpages-navi-level-X" where X is the 0-idexed depth (i.e. subpages-navi-level-0, subpages-navi-level-1, etc...)
+	    * Every node contains an <a> which points to the actual page
+	    * The node that contains the link to the current page will have the class "subpages-navi-current-level"
+	    * All nodes with at least one children will have the class "parent" (added via JS)
+	    * Expandable parents will have the class "expandable" (added via JS)
+	    * Collapsible parents will have the class "collapsible" (added via JS)
+	* The sub-trees
+	    * Every sub-tree is a <ul> with the class "children" which is nested inside their parent <li>
+	    * A sub-tree contains a list of nodes with the same properties mentioned above
+	* The hit area
+	    * An empty <div> with the class "hitarea" will be insterted at the beginning of each parent <li> node. This is were the user will click on to expand/collapse the sub-tree.
+	
+	Sample HTML (after JS):
+	
+	<ul class="subpages-navi subpages-navi-widget subpages-navi-collapsible">
+	    <li class="subpages-navi-node subpages-navi-level-0 parent collapsible">
+	        <div class="hitarea" />
+	        <a href="top-level-page-1.html">Top Level Page 1</a>
+	        <ul class="children">
+	            <li class="subpages-navi-node subpages-navi-level-1 subpages-navi-current-level">
+	                <a href="second-level-page-1.html">Second Level Page 1</a>
+	            </li>
+	            <li class="subpages-navi-node subpages-navi-level-1">
+	                <a href="second-level-page-1.html">Second Level Page 2</a>
+	            </li>
+	            <li class="subpages-navi-node subpages-navi-level-1 parent expandable">
+    	            <div class="hitarea" />
+	                <a href="second-level-page-1.html">Second Level Page 3</a>
+	                <ul class="children">
+	                    <!-- stuff omitted... -->
+	                </ul> 
+	            </li>
+	        </ul>
+	    </li>
+	    <li class="subpages-navi-node subpages-navi-level-0">
+	        <a href="top-level-page-2.html">Top Level Page 2</a>
+	    </li>
+	    <li class="subpages-navi-node subpages-navi-level-0 parent expandable">
+	        <div class="hitarea" />
+	        <a href="top-level-page-3.html">Top Level Page 3</a>
+	        <ul class="children">
+	            <!-- stuff omitted... -->
+	        </ul>
+	    </li>
+	</ul>
+	
+	Below are some suggested style (it's quite minimal)
+	
+*/
+
+ul.subpages-navi, .subpages-navi ul {
+	list-style: none !important;
+}
+
+ul.subpages-navi-widget, .subpaegs-navi-widget ul {
+	width: 100%;
+}
+
+ul.subpages-navi .hitarea {
+    display: inline;
+	width: 18px;
+	height: 19px;
+	margin-left: -19px;
+	float: left;
+	cursor: pointer;
+	background-image: url(images/subpages-navigation-hitarea.gif);
+	background-repeat: no-repeat;
+}
+
+/* fix for IE6 */
+* html .hitarea {
+	display: inline;
+	float:none;
+}
+
+ul.subpages-navi li.expandable>.hitarea {
+    background-position: 3px -2px;
+}
+
+ul.subpages-navi li.collapsible>.hitarea {
+	background-position: -16px -3px;
+}
+
+ul.subpages-navi li {
+  margin-top: 1px;
+}
+
+ul.subpages-navi-widget a {
+  display: block;
+  padding: 0 0 0 4px;
+}
+
+ul.subpages-navi a:hover {
+  text-decoration:underline;
+}
